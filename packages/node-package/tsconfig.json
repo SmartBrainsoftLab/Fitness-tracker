@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src"],
+  // "include": ["src", "index.ts"],
   "compilerOptions": {
     "outDir": "dist",
     /* Visit https://aka.ms/tsconfig to read more about this file */
