@@ -26,8 +26,15 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 375px;
+  min-height: 812px;
+  color: rgb(124, 109, 219,100%);
+}
+
+#root {
+  border: 2px solid rgb(166, 236, 139);
+  padding: 10px;
+  border-radius: 25px;
 }
 
 h1 {
