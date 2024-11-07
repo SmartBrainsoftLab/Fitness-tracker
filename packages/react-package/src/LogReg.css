@@ -24,6 +24,11 @@ body {
     margin-bottom: 1rem;
 }
 
+.form-error {
+    font-size: 10;
+    color: red;
+}
+
 label {
     margin-bottom: 0.5rem;
 }

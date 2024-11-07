@@ -1,17 +1,28 @@
 {
   "name": "node-package",
+  "type": "commonjs",
   "packageManager": "yarn@4.5.1",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/http-status": "^1.1.2",
     "@types/node": "^22.8.7",
+    "nodemon": "^3.1.7",
     "typescript": "^5.6.3"
   },
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/index.ts",
     "stop": "killall node"
   },
   "dependencies": {
     "@types/express": "^5.0.0",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
-    "ts-node": "^10.9.2"
+    "http-status": "^2.0.0",
+    "mysql": "^2.18.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.20",
+    "typeorm-naming-strategies": "^4.1.0"
   }
 }
