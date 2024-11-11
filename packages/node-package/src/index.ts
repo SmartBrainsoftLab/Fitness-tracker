@@ -16,6 +16,13 @@ const setupServer = async () => {
 
     process.exit(0);
   }
+
+  try {
+    await backendSetup();
+  } catch (error) {
+    Logger.info(MESSAGE.SERVER.STARTING_FAILURE);
+    Logger.error(error);
+  }
 };
 
 setupServer();
