@@ -7,10 +7,10 @@ export class UserEntity extends CoreEntity {
   uuid: string;
 
   @Column({ type: "varchar", nullable: true })
-  username: string;
+  name: string;
 
   @Column({ type: "varchar", nullable: false })
-  email: string;
+  email: string;s
 
   @Column({ type: "varchar", nullable: false })
   password: string;

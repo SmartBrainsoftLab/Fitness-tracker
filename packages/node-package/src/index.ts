@@ -1,20 +1,23 @@
-import express from 'express';
-import { appRouter } from './routes';
-import cors from "cors";
-import bodyParser from 'body-parser';
-import { AppDataSource } from './db.setup';
+import { MESSAGE } from "./constant";
+import { AppDataSource, backendSetup } from "./setup";
+import { Logger, dbCreate } from "./utils";
 
-const app = express();
-AppDataSource.initialize();
-app.get('/api/data', (req, res) => {
-  res.json({ message: 'Hello from Node!' });
-});
+const setupServer = async () => {
+  try {
+    console.log('dddds')
+    await dbCreate();
+    console.log('DB logged successful');
+    Logger.info(MESSAGE.DATABASE.MIGARATION_SUCCESS);
+    await AppDataSource.initialize();
+    Logger.info(MESSAGE.DATABASE.CONNECTION_SUCCESS);
+  } catch (error) {
+    Logger.info(MESSAGE.DATABASE.CONNECTION_FAILURE);
+    Logger.error(error);
 
-app.use(cors());
-app.use(bodyParser());
-app.use(appRouter);
+    process.exit(0);
+  }
+};
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+setupServer();
+
+
