@@ -7,19 +7,35 @@ import axios from "axios";
 function SignUp() {
     const validationSchema = Yup.object().shape({
         username: Yup.string().required("Username is required."),
+        email: Yup.string().required("email is required."),
         password: Yup.string().required("Password is required.").length(8, "Password should be longer than 8."),
         password2: Yup.string().required("Confirm password is required.").oneOf([Yup.ref('password'), ""], 'Passwords do not match')
     })
     const formik = useFormik({
         initialValues: {
             username: "",
+            email: "",
             password: "",
             password2: ""
         },
         validationSchema,
         onSubmit: async (values: TReg, action: FormikHelpers<TReg>) => {
+            type temp_values = {
+                name: string;
+                email: string;
+                password: string; // optional property
+              };
+              
+              const value: temp_values = {
+                name: values['username'],
+                email: values['email'],
+                password: values['password'],
+                
+              };
+            
+            console.log("values",value);
             try{
-                const response = await axios.post("http://localhost:3000/signup", values);
+                const response = await axios.post(PATH.BACKEND_SIGNUP_AUTH + PATH.SIGNUP, value);
                 action.resetForm();
             } catch (err) {
                 console.log(err);
@@ -37,6 +53,11 @@ function SignUp() {
                         <p>Username</p>
                         <input className="w-full focus:outline-none border border-black rounded-sm" name='username' onChange={formik.handleChange} value={formik.values.username} />
                         <div className='form-error'>{formik.touched.username && formik.errors.username ? formik.errors.username : null}</div>
+                    </div>
+                    <div className="flex items-center w-full justify-between">
+                        <p>email</p>
+                        <input className="w-full focus:outline-none border border-black rounded-sm" name='email' onChange={formik.handleChange} value={formik.values.email} />
+                        <div className='form-error'>{formik.touched.email && formik.errors.email ? formik.errors.email : null}</div>
                     </div>
                     <div className="flex items-center gap-4 w-full justify-between">
                         <label>Password</label>
