@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  backend-service:
+    build:
+      context: ./packages/node-package
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: database
+      DB_USERNAME: fitness
+      DB_PASSWORD: fitness
+      DB_PORT: 3306
+      DB_NAME: fitness
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: on-failure
+    links:
+      - "db:database"
+  db:
+    image: mysql
+    expose: 
+      - 3306
+    restart: always
+    environment:
+      MYSQL_USER: fitness
+      MYSQL_PASSWORD: fitness
+      MYSQL_DATABASE: fitness
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
