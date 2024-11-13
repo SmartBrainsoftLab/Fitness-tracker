@@ -6,6 +6,7 @@ export type TReg = {
 }
 
 export type TSignIn = {
-    username: string;
+    // username: string;
+    email: string;
     password: string;
 }
