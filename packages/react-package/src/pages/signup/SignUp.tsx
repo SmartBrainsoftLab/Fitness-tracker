@@ -35,7 +35,8 @@ function SignUp() {
             
             console.log("values",value);
             try{
-                const response = await axios.post(PATH.BACKEND_SIGNUP_AUTH + PATH.SIGNUP, value);
+                const response = await axios.post(PATH.BACKEND_SIGN_AUTH + PATH.SIGNUP, value);
+                console.log(response);
                 action.resetForm();
             } catch (err) {
                 console.log(err);
